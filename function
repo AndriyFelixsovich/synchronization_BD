@@ -1,0 +1,426 @@
+function excel()
+    {
+
+        $seo_url = new DB('mysqli', 'localhost', 'root', '', 'star-avto_offic');
+
+        /*
+                $query = "INSERT INTO `star-avto_db`.`oc_allegro_category` (
+            `category_id`, `parent_id`, `name`, `label`, `get_all`, `name_orig`, `allegro_id`, `allegro_query`,
+            `meta_title`, `meta_description`, `use_allegro_id`, `use_allegro_query`, `status`, `type`,
+            `category_info`, `category_h1`, `name_ua`, `label_ua`, `get_all_ua`, `meta_title_ua`,
+            `meta_description_ua`, `category_info_ua`, `category_h1_ua`, `name_var`, `name_var_ua`,
+            `image`, `seo_indexing`, `top`, `category_info_for_all`
+        )
+                      SELECT
+            `category_id`, `parent_id`, `name`, `label`, `get_all`, `name_orig`, `allegro_id`, `allegro_query`,
+            `meta_title`, `meta_description`, `use_allegro_id`, `use_allegro_query`, `status`, `type`,
+            `category_info`, `category_h1`, `name_ua`, `label_ua`, `get_all_ua`, `meta_title_ua`,
+            `meta_description_ua`, `category_info_ua`, `category_h1_ua`, `name_var`, `name_var_ua`,
+            `image`, `seo_indexing`, `top`, `category_info_for_all`
+                      FROM `star-avto_offic`.`oc_allegro_category`";
+
+
+                $seo_url->query($query);*/
+
+
+//        $seo_url = new DB('mysqli', 'localhost', 'root', '', 'star-avto_offic');
+//        $query = "INSERT INTO `star-avto_db`.`oc_url_alias` (
+//                    `url_alias_id`, `store_id`, `language_id`, `query`, `keyword`
+//                )
+//                SELECT
+//                    `seo_url_id`, `store_id`, `language_id`, `query`, `keyword`
+//                FROM `star-avto_offic`.`oc_seo_url`";
+//
+//        $seo_url->query($query);
+
+//        $seo_url = new DB('mysqli', 'localhost', 'root', '', 'star-avto_offic');
+//        $query = "INSERT INTO `star-avto_db`.`oc_allegro_category_path` (
+//                    `category_id`, `path_id`, `level`
+//                )
+//                SELECT
+//                    `category_id`, `path_id`, `level`
+//                FROM `star-avto_offic`.`oc_allegro_category_path`";
+//
+//        $seo_url->query($query);
+//    }
+
+
+        /*$seo_url = new DB('mysqli', 'localhost', 'root', '', 'star-avto_offic');
+        $results = $seo_url->query("SELECT query,keyword FROM oc_seo_url")->rows;
+
+        foreach ($results as $result) {
+            $allegroCategoryId = $this->getAllegroCategoryId($result['query']);
+
+            $seoUrlQuery = '';
+            $seoUrlQueryAll = '';
+            $nofingeAllegroCategory = [];
+            if ($allegroCategoryId !== null) {
+                $seoUrlQuery = $this->db->query("SELECT query, keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'allegro_category_id=" . $allegroCategoryId . "'");
+                if (!$seoUrlQuery->row || !isset($seoUrlQuery->row['query'])) {
+                    $nofingeAllegroCategory[] = 'allegro_category_id=' . $allegroCategoryId;
+
+                }
+
+                if ($seoUrlQuery->row && isset($seoUrlQuery->row['query'])) {
+                    $seoUrlQueryAll = $seo_url->query("SELECT keyword FROM oc_seo_url WHERE query = '" . $seoUrlQuery->row['query'] . "'")->rows;
+
+                }
+//
+            }
+
+//            if ($seoUrlQueryAll) {
+//                $keyword = $seoUrlQueryAll[0]['keyword'];
+//
+//                $this->db->query("UPDATE " . DB_PREFIX . "url_alias SET keyword = '" . $keyword . "', status = 1 WHERE query = 'allegro_category_id=" . $allegroCategoryId . "'");
+//            }
+        }*/
+        // відбираємо по filter_id
+//        $seo_url = new DB('mysqli', 'localhost', 'root', '', 'star-avto_offic');
+        /*$url_alias_results = $this->db->query("SELECT query FROM " . DB_PREFIX . "url_alias");
+        $results = $seo_url->query("SELECT query FROM oc_seo_url WHERE language_id = 1 AND query LIKE 'filter_id=%' AND SUBSTRING_INDEX(query, '=', -1) BETWEEN 10035 AND 10055")->rows;
+
+        foreach ($results as $result) {
+            $query_to_compare = $result['query'];
+
+
+            $simile = $seo_url->query("SELECT query FROM oc_seo_url WHERE query = '" . $query_to_compare . "'")->rows;
+
+            if ($simile) {
+
+                $seoUrlQueryAll = $seo_url->query("SELECT keyword FROM oc_seo_url WHERE query = '" . $simile[0]['query'] . "'")->rows;
+
+                if ($seoUrlQueryAll) {
+                    $keyword = $seoUrlQueryAll[0]['keyword'];
+                    $this->db->query("UPDATE " . DB_PREFIX . "url_alias SET keyword = '" . $keyword . "', status = 1 WHERE query = '" . $query_to_compare . "'");
+                }
+            }
+        }*/
+//        $allegro_category_name_seo = $seo_url->query("
+//            SELECT ac.name_orig, ac.category_id, su.keyword, su.query
+//            FROM oc_allegro_category ac
+//            LEFT JOIN oc_seo_url su ON ac.category_id = SUBSTRING_INDEX(su.query, '=', -1)
+//            WHERE ac.parent_id = 6
+//            ORDER BY ac.name_orig ASC
+//        ")->rows;
+
+        //Змінюємо авто
+        /* $allegro_category_name_seo = $seo_url->query("SELECT name_orig, category_id FROM oc_allegro_category WHERE parent_id = 6 ORDER BY name_orig ASC ")->rows;
+
+ //                $allegro_category_name_url = $this->db->query("SELECT name_orig, category_id FROM oc_allegro_category WHERE parent_id = 6 ORDER BY name_orig ASC ")->rows;
+ //        var_dump(count($allegro_category_name_url));die();
+         $filter_id_seo = [];
+         foreach ($allegro_category_name_seo as $item) {
+             $item_seo_name_orig = $item['name_orig'];
+             $item_seo_category_id = $item['category_id'];
+             //Якщо в БД є
+             $simile = $this->db->query("SELECT category_id FROM oc_allegro_category WHERE parent_id = 6 AND name_orig = '" . $item_seo_name_orig . "' AND category_id = '" . $item_seo_category_id . "' ORDER BY name_orig ASC ")->rows;
+
+             foreach ($simile as $simile_filter) {
+
+                 //
+                 $seoUrlQueryAll = $seo_url->query("SELECT keyword,query FROM oc_seo_url WHERE query = 'filter_id=" . $simile_filter["category_id"] . "'")->rows;
+                 $keyword = $seoUrlQueryAll[0]['keyword'];
+                 //Змінюємо keyword Марки авто
+ //                $this->db->query("UPDATE " . DB_PREFIX . "url_alias SET keyword = '" . $keyword . "', status = 1 WHERE query = '" . $seoUrlQueryAll[0]['query'] . "'");
+ //                $filter_id_seo = $seo_url->query("SELECT category_id FROM oc_allegro_category WHERE parent_id = 'filter_id=" . $simile_filter["category_id"] . "'")->rows;
+                 //Вибираю Моделі Марки
+                 $filter_id_seo[] = $seo_url->query("SELECT category_id,parent_id FROM oc_allegro_category WHERE parent_id = '" . $simile_filter["category_id"] . "'")->rows;
+
+             }
+         }*/
+        //Start
+        //Змінюємо моделі
+        /* foreach ($filter_id_seo as $filter_id_one_model){
+             foreach ($filter_id_one_model as $item_one){
+
+                 $filter_cut_model[] = $seo_url->query("
+                     SELECT ac.category_id,ac.name_orig,su.keyword, su.query
+                     FROM oc_allegro_category ac
+                     LEFT JOIN oc_seo_url su ON ac.category_id = SUBSTRING_INDEX(su.query, '=', -1) AND su.query LIKE 'filter_id=%'
+                     WHERE language_id = 1 AND parent_id = '" . $item_one['parent_id'] . "' AND category_id = '" . $item_one['category_id'] . "'
+                 ")->rows;
+             }
+         }
+
+         foreach ($filter_cut_model as $filter_id) {
+             if (!empty($filter_id)) {
+                 //                var_dump($filter_id);die();
+                 foreach ($filter_id as $filter_id_simple){
+
+                     $assocArrayModel[] = [
+                         'category_id' => isset($filter_id_simple["category_id"]) ? $filter_id_simple["category_id"] : null,
+                         'keyword' => isset($filter_id_simple["keyword"]) ? $filter_id_simple["keyword"] : null,
+                         'query' => isset($filter_id_simple["query"]) ? $filter_id_simple["query"] : null,
+                     ];
+                 }
+             }
+         }
+
+         foreach ($assocArrayModel as $sort){
+                     $this->db->query("UPDATE " . DB_PREFIX . "url_alias SET keyword = '" . $sort['keyword'] . "', status = 1 WHERE query = 'filter_id=" . $sort['category_id'] . "'");
+                 }*/
+        //END
+
+
+        //Start
+        //Змінюємо під моделі
+//                    $filter_id_model = $seo_url->query("SELECT category_id FROM oc_allegro_category WHERE parent_id = '" . $filter_id["category_id"] . "'")->rows;
+//
+//                    $seoUrlFilterAll = $seo_url->query("SELECT keyword,query FROM oc_seo_url WHERE query = 'filter_id=" . $filter_id["category_id"] . "'")->rows;
+
+//                    $keyword = $seoUrlFilterAll[0]['keyword'];
+        //Змінюємо під категорію моделі
+        /* foreach ($filter_id_seo as $filter_id_one){
+             foreach ($filter_id_one as $item_one){
+
+                 $filter_cut[] = $seo_url->query("
+             SELECT ac.category_id,ac.name_orig,su.keyword, su.query
+             FROM oc_allegro_category ac
+             LEFT JOIN oc_seo_url su ON ac.category_id = SUBSTRING_INDEX(su.query, '=', -1) AND su.query LIKE 'filter_id=%'
+             WHERE language_id = 1 AND parent_id = '" . $item_one['category_id'] . "'
+         ")->rows;
+             }
+         }
+
+         foreach ($filter_cut as $filter_id) {
+             if (!empty($filter_id)) {
+ //                var_dump($filter_id);die();
+                 foreach ($filter_id as $filter_id_simple){
+
+                 $assocArray[] = [
+                     'category_id' => isset($filter_id_simple["category_id"]) ? $filter_id_simple["category_id"] : null,
+                     'keyword' => isset($filter_id_simple["keyword"]) ? $filter_id_simple["keyword"] : null,
+                     'query' => isset($filter_id_simple["query"]) ? $filter_id_simple["query"] : null,
+                 ];
+             }
+             }
+         }*/
+//        foreach ($assocArray as $sort){
+//                    $this->db->query("UPDATE " . DB_PREFIX . "url_alias SET keyword = '" . $sort['keyword'] . "', status = 1 WHERE query = 'filter_id=" . $sort['category_id'] . "'");
+//                }
+
+        /*         $this->db->query("UPDATE " . DB_PREFIX . "url_alias SET keyword = '" . $assocArray["keyword"] . "', status = 1 WHERE query = '" . $assocArray["query"] . "'");
+                 foreach ($filter_id_model as $model_id){
+                     $modelAll = $seo_url->query("SELECT keyword,query FROM oc_seo_url WHERE query = 'filter_id=" . $model_id["category_id"] . "'")->rows;
+                     $keyword = $modelAll[0]['keyword'];
+                     $this->db->query("UPDATE " . DB_PREFIX . "url_alias SET keyword = '" . $keyword . "', status = 1 WHERE query = '" . $modelAll[0]['query'] . "'");
+                 }
+             }
+         }
+     }*/
+
+        // END //
+
+        ////Перезаписую мото
+        /// START
+        $allegro_query_moto_mark = $seo_url->query("SELECT allegro_query, category_id,su.keyword
+                                                        FROM oc_allegro_category ac
+                                                        LEFT JOIN oc_seo_url su ON ac.category_id = SUBSTRING_INDEX(su.query, '=', -1) AND su.query LIKE 'filter_id=%'
+                                                        WHERE language_id = 1 AND ac.parent_id = 5
+                                                        ORDER BY allegro_query ASC ")->rows;
+        foreach ($allegro_query_moto_mark as $allegro_query_moto_mark_item) {
+
+            $moto_mark[] = $this->db->query("SELECT parent_id,category_id as category_id_url,allegro_query, 
+                                            '" . $allegro_query_moto_mark_item['category_id'] . "' as category_id_seo,
+                                            '" . $allegro_query_moto_mark_item['keyword'] . "' as keyword_seo
+                                            FROM oc_allegro_category
+                                            WHERE parent_id = 5 AND allegro_query = '" . $allegro_query_moto_mark_item['allegro_query'] . "' ")->rows;
+
+        }
+
+        /*foreach ($allegro_query_moto_mark as $allegro_query_moto_mark_item) {
+
+            $moto_mark = $this->db->query("SELECT category_id FROM oc_allegro_category WHERE parent_id = 5 AND allegro_query = '" . $allegro_query_moto_mark_item['allegro_query'] . "' ")->rows;
+
+            $allegro_category_name_seo = $seo_url->query("
+            SELECT ac.name_orig, ac.category_id, su.keyword, su.query
+            FROM oc_allegro_category ac
+            LEFT JOIN oc_seo_url su ON ac.category_id = SUBSTRING_INDEX(su.query, '=', -1)
+            LEFT JOIN ($this->db->query(
+                SELECT allegro_query FROM oc_allegro_category)
+            ) aq ON ac.some_column = aq.some_column
+            WHERE ac.parent_id = 5
+            ORDER BY ac.name_orig ASC
+            ")->rows;
+        }*/
+
+
+//        $allegro_category_moto_seo = $seo_url->query("
+//            SELECT ac.allegro_query, su.keyword, ac.category_id, aq.category_id as category_id_seo
+//            FROM oc_allegro_category ac
+//            LEFT JOIN oc_seo_url su ON ac.category_id = SUBSTRING_INDEX(su.query, '=', -1) AND su.query LIKE 'filter_id=%'
+//
+//            WHERE language_id = 1 AND ac.parent_id = 5
+//            ORDER BY ac.allegro_query ASC
+//        ")->rows;
+
+
+        //Перезаписую Марку
+//        foreach ($allegro_category_moto_seo as $allegro_category_moto) {
+//            $keyword = $allegro_category_moto['keyword'];
+//            $moto_brand = $allegro_category_moto['allegro_query'];
+//            $category_id_result = $this->db->query("SELECT category_id FROM oc_allegro_category WHERE parent_id = 5 AND allegro_query = '" . $moto_brand . "'")->rows;
+
+        foreach ($moto_mark as $moto_mark_item) {
+//            $this->db->query("UPDATE " . DB_PREFIX . "url_alias SET keyword = '" . $moto_mark_item[0]["keyword_seo"] . "', status = 1 WHERE query = 'filter_id=" . $moto_mark_item[0]["category_id_url"] . "'");
+        }
+
+
+        //Перезаписую Модель
+        foreach ($moto_mark as $model_under) {
+
+            $model_under_cut[] = $seo_url->query("
+                    SELECT ac.category_id as under_category_id,
+                           ac.parent_id as under_parent_id,
+                           ac.allegro_query as under_allegro_query,
+                           su.keyword,
+                           '" . $model_under[0]["category_id_url"] . "' as category_id_url
+                    FROM oc_allegro_category ac
+                    LEFT JOIN oc_seo_url su ON ac.category_id = SUBSTRING_INDEX(su.query, '=', -1) AND su.query LIKE 'filter_id=%'
+                    WHERE language_id = 1 AND parent_id = '" . $model_under[0]["category_id_seo"] . "'
+
+                ")->rows;
+        }
+
+//var_dump($model_under_cut);die();
+        foreach ($model_under_cut as $model_under_cut_item) {
+
+            foreach ($model_under_cut_item as $model_under_cut_item_item) {
+//var_dump($model_under_cut_item_item);die();
+                $markAll[] = $this->db->query("SELECT allegro_query as allegro_query_new,
+                                                   category_id as category_id_new,
+                                                   parent_id as parent_id_new,
+                                                   '".$model_under_cut_item_item["under_category_id"]."' as under_category_id,
+                                                   '".$model_under_cut_item_item["under_parent_id"]."' as under_parent_id,
+                                                   
+                                                   '" . $model_under_cut_item_item["keyword"] . "' as keyword_new
+                                            FROM oc_allegro_category
+                                            
+                                            WHERE parent_id ='" . $model_under_cut_item_item["category_id_url"] . "'
+                                            AND allegro_query = '" . $this->db->escape($model_under_cut_item_item["under_allegro_query"]) . "' 
+                                           
+                                            ")->rows;
+            }
+        }
+
+//var_dump($markAll);die();
+        /*       foreach ($model_under_cut as $model_under_cut) {
+
+                   $markAll = $this->db->query("SELECT allegro_query FROM oc_allegro_category WHERE parent_id ='" . $model_under_cut[0]["category_id_url"] . "'")->rows;
+   //var_dump($markAll);die();
+   //                $category_id_url = $model_under_brand[0]["category_id_url"];
+   //                $keyword = $model_under_brand[0]["keyword"];
+               }
+
+                   $model_under_cutt[] = $this->db->query("
+                       SELECT ac.category_id,
+                               '" . $model_under_brand[0]["under_category_id"] . "' as  under_category_id_old,
+                               '" . $model_under_brand[0]["keyword"] . "' as  keyword
+
+                       FROM oc_allegro_category ac
+                        WHERE ac.allegro_query = '" . $model_under_brand[0]["under_allegro_query"] . "'
+                         AND ac.category_id IN (
+                           SELECT acu.category_id
+                           FROM oc_allegro_category acu
+                           WHERE acu.parent_id = '" . $category_id_url . "'
+                         )
+                   ")->rows;
+               }*/
+
+
+//        foreach ($markAll as $sortt) {
+//            foreach ($sortt as $sort){
+//
+//                $this->db->query("UPDATE " . DB_PREFIX . "url_alias SET keyword = '" . $sort['keyword_new'] . "', status = 1 WHERE query = 'filter_id=" . $sort['category_id_new'] . "'");
+//            }
+//        }
+
+        //Перезаписую підМодель
+        foreach ($markAll as $item_underCatt_drop ) {
+//var_dump($item_underCatt_drop[0]);die();
+            $underCat_result_all[] = $seo_url->query("SELECT ac.category_id as category_id_old,
+                                                                    ac.parent_id as parent_id_old,
+                                                       ac.allegro_query as allegro_query_old,
+                                                       '" . $item_underCatt_drop[0]["category_id_new"] . "' as parent_id_new,
+                                                       su.keyword
+                                                       /*oc_allegro_category.allegro_query AS model_allegro_query,*/
+                                                     
+                                                        FROM oc_allegro_category ac
+                                                        LEFT JOIN oc_seo_url su ON ac.category_id = SUBSTRING_INDEX(su.query, '=', -1) AND su.query LIKE 'filter_id=%'
+                                                        /*LEFT JOIN oc_allegro_category ON oc_allegro_category.category_id = '" . $item_underCatt_drop[0]["under_category_id"] . "'*/
+                                                        WHERE
+                                                        language_id = 1 AND 
+                                                        ac.parent_id = '" . $item_underCatt_drop[0]["under_category_id"]. "'
+                                                        /*ORDER BY category_id ASC*/
+                                                        ")->rows;
+
+      }
+        $underCat_result_all = array_filter($underCat_result_all);
+//var_dump($underCat_result_all);
+
+       /* $underCat_result_all = [];
+        $item_underCatt = [];
+        foreach ($model_under_cut as $underCat) {
+            foreach ($underCat as $item_underCat) {
+                $item_underCatt[]=$item_underCat["category_id"];
+            }
+        }
+        foreach ($item_underCatt as $item_underCatt_drop ) {
+
+            $underCat_result_all[] = $seo_url->query("SELECT ac.category_id,ac.allegro_query,su.keyword, oc_allegro_category.allegro_query AS model_allegro_query
+
+                                                        FROM oc_allegro_category ac
+                                                        LEFT JOIN oc_seo_url su ON ac.category_id = SUBSTRING_INDEX(su.query, '=', -1) AND su.query LIKE 'filter_id=%'
+                                                        LEFT JOIN oc_allegro_category ON oc_allegro_category.category_id = '" . $item_underCatt_drop . "'
+                                                        WHERE language_id = 1 AND ac.parent_id = '" . $item_underCatt_drop. "'
+                                                        /*ORDER BY category_id ASC*/
+        /*                                                ")->rows;
+
+        }
+        $underCat_result_all = array_filter($underCat_result_all);
+
+        $assocArray = [];
+        foreach ($underCat_result_all as $underCat_result_all_drop) {
+            foreach ($underCat_result_all_drop as $item) {
+
+                $model_under_cutt = $this->db->query("
+                    SELECT category_id
+                    FROM oc_allegro_category
+                    WHERE allegro_query = '" . $this->db->escape($item['allegro_query']) . "'
+                ")->rows;*/
+
+                foreach ($underCat_result_all as $underCat_result_item) {
+//                    var_dump($underCat_result_item);
+                    foreach ($underCat_result_item as $underCat_result_item_item) {
+
+                        $underCat_result[] = $this->db->query("SELECT category_id,
+                                                             '" . $underCat_result_item_item["keyword"] . "' as keyword,
+                                                             '" . $underCat_result_item_item["parent_id_new"] . "' as parent_id_new                                                             
+                                                            FROM oc_allegro_category
+                                                            WHERE parent_id = '" . $underCat_result_item_item["parent_id_new"] . "'
+                                                            AND allegro_query LIKE '" . $this->db->escape($underCat_result_item_item["allegro_query_old"]) . "'
+                                                             ")->rows;
+//                        /*AND ac.allegro_query = '" . $this->db->escape($underCat_result_item_item["allegro_query_old"]) . "'*/
+//                        '" . $underCat_result_item_item["parent_id_new"] . "' as parent_id_new
+                /*$assocArray[] = [
+                    'category_id' => isset($model_under_cutt[0]["category_id"]) ? $model_under_cutt[0]["category_id"] : null,
+                    'keyword' => $underCat_result_item_item["keyword"],
+                ];*/
+                    }
+                }
+        $underCat_result= array_filter($underCat_result);
+
+
+
+//            }
+//
+//
+//
+//        }
+
+        foreach ($underCat_result as $sort){
+//            var_dump($sort[0]);
+            $this->db->query("UPDATE " . DB_PREFIX . "url_alias SET keyword = '" . $sort[0]['keyword'] . "', status = 1 WHERE query = 'filter_id=" . $sort[0]['category_id'] . "'");
+        }
+
+    }
