@@ -1,3 +1,18 @@
+function getAllegroCategoryId($query)
+    {
+        preg_match('/allegro_category_id=(\d+)/', $query, $matches);
+        if (isset($matches[1])) {
+            return (int)$matches[1];
+        }
+    }
+
+    function getFilterCategoryId($query)
+    {
+        preg_match('/filter_id=(\d+)/', $query, $matches);
+        if (isset($matches[1])) {
+            return (int)$matches[1];
+        }
+    }
 function excel()
     {
 
